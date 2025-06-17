@@ -1,0 +1,25 @@
+{
+    "name": "projetoimc/fitcalc",
+    "description": "Calculadora de IMC",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Controller\\":"Controller/",
+            "Model\\":"Model/",
+            "Projetoimc\\Fitcalc\\": "fitCalc/"
+        },
+        "files":[
+            "Config/configuration.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Pietro Martin"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php":">= 8.0",
+        "ext-mbstring":"*"
+    }
+}
