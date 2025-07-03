@@ -1,5 +1,4 @@
 <?php
-
 define("DB_NAME","fitcalc");
 define("DB_USER","root");
 define("DB_PASSWORD",'');

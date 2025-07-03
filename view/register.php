@@ -1,3 +1,28 @@
+<?php
+require_once '../vendor/autoload.php';
+session_start();
+
+use Model\User;
+
+$user = new User();
+$resultMessage = '';
+
+if($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if(isset($_POST['user_fullname'], $_POST['email'], $_POST['password'])){
+        $user_fullname = $_POST['user_fullname'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        if($user->post($user_fullname, $email, $password)) {
+            $resultMessage = 'Usuário cadastrado com sucesso!';
+        } else {
+            $resultMessage = 'Erro ao cadastrar informações';
+        }
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -7,7 +32,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../template/assets/css/register.css">
+    <link rel="stylesheet" href="../templates/assets/css/register.css">
     <title>FitCalc | Criar Conta</title>
 </head>
 
@@ -87,7 +112,7 @@
             <p class="text-center">Já tem uma conta? <a href="../index.php">Faça login aqui</a></p>
             </div>
         </form>
-        <p></p>
+        <p><?php echo $resultMessage;?></p>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
